@@ -226,33 +226,71 @@ section {
   background-color: #0a0a0a !important;
   color: #d0d8d4 !important;
 }
-
 .code-block {
-  background-color: #0a0a0a !important;
-  border: 1px solid #2a2a2a !important;
-  border-radius: 12px !important;
-  padding: 16px 20px !important;
-  margin: 15px 0 !important;
-  position: relative !important;
-  overflow-x: auto !important;
-}
-
-.code-block pre {
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: transparent !important;
-  border: none !important;
-  font-family: 'Courier New', monospace !important;
-  font-size: 0.85rem !important;
-  color: #d0d8d4 !important;
-  white-space: pre-wrap !important;
-  word-break: break-word !important;
+  background-color: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin: 15px 0;
+  overflow-x: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .code-block .btn-copy-code {
-  position: absolute !important;
-  top: 10px !important;
-  right: 12px !important;
+  align-self: flex-end;
+  margin-bottom: 10px;
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #1a1a1a;
+  border: 1px solid #3a3a3a;
+  color: #ccc;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.code-block .btn-copy-code:hover {
+  background-color: #2a2a2a;
+  border-color: #4cbb7a;
+  color: #fff;
+}
+
+.code-block .btn-copy-code.copiado {
+  border-color: #4cbb7a;
+  color: #4cbb7a;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #d0d8d4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 576px) {
+  .code-block {
+    padding: 10px 12px;
+  }
+
+  .code-block .btn-copy-code {
+    padding: 3px 10px;
+    font-size: 0.65rem;
+  }
+
+  .code-block pre {
+    font-size: 0.7rem;
+  }
 }
 
 .img-padrao {
