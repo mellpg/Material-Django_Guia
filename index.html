@@ -1,0 +1,1658 @@
+<!doctype html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linha do Tempo - Django</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressBarFill"></div>
+  </div>
+  <span class="progress-text" id="progressText">0%</span>
+
+  <div class="parabens-overlay" id="parabensOverlay">
+    <div class="parabens-content">
+      <span class="emoji-grande">🎉🎊🥳</span>
+      <h2>PARABÉNS! 🏆</h2>
+      <p>Você concluiu todas as etapas do seu projeto Django!</p>
+      <button class="btn-fechar-parabens" onclick="fecharParabens()">
+        <i class="bi bi-check2-circle"></i> Continuar
+      </button>
+    </div>
+  </div>
+  <div class="confetti-container" id="confettiContainer"></div>
+
+  <button class="btn btn-menu-flutuante position-fixed top-0 start-0 m-3 z-3 d-flex align-items-center gap-2 shadow"
+    type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral" aria-controls="menuLateral"
+    aria-label="Abrir menu">
+    <i class="bi bi-list"></i>
+    <span class="d-none d-sm-inline fw-semibold" style="color: #ccc"></span>
+  </button>
+
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="menuLateral" aria-labelledby="menuLateralLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="menuLateralLabel">
+        <i class="bi bi-code-square me-2" style="color: #888"></i> Navegação
+      </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <nav class="nav flex-column gap-1">
+        <a class="nav-link-custom" href="#inicio">
+          <i class="bi bi-house-door"></i> Início
+        </a>
+        <a class="nav-link-custom" href="#sobre">
+          <i class="bi bi-info-circle"></i> Sobre
+        </a>
+        <a class="nav-link-custom" href="#contato">
+          <i class="bi bi-envelope"></i> Contato
+        </a>
+        <a class="nav-link-custom" href="#demonstracao">
+          <i class="bi bi-code-square"></i> Demonstração
+        </a>
+        <a class="nav-link-custom" href="#passos_iniciais">
+          <i class="bi bi-terminal"></i> Ambiente Virtual
+        </a>
+        <a class="nav-link-custom" href="#hello_world">
+          <i class="bi bi-code-square"></i> Hello World
+        </a>
+      </nav>
+
+      <hr class="my-4" style="border-color: #2a2a2a; opacity: 0.5" />
+      <div class="mt-2 small d-flex align-items-center gap-2" style="color: #6a7a72">
+        <i class="bi bi-database"></i>
+        <span>Versão atual: Django 6.0 · projeto</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="container pt-2 pt-md-4">
+    <h1>Linha do tempo de um projeto Django</h1>
+
+    <section id="inicio">
+      <h2>Introdução</h2>
+      <p>
+        Bem-vindo à linha do tempo do seu desenvolvimento! Aqui daremos os
+        primeiros passos práticos na estruturação do seu projeto
+        <a href="https://www.djangoproject.com/" target="_blank" style="color: #4cbb7a; text-decoration: none; font-weight: bold;">Django</a>.
+        Nosso foco inicial será criar um ambiente de desenvolvimento limpo e
+        isolado para garantir que todas as dependências funcionem em perfeita
+        harmonia.
+      </p>
+
+      <h2>O que vamos construir</h2>
+      <p>Nesta etapa, você aprenderá a:</p>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <span style="color: #4cbb7a">Configurar o ambiente virtual:</span>
+          <p>
+            Criar e ativar o seu virtualenv, isolando os pacotes Python do seu
+            sistema operacional.
+          </p>
+        </li>
+        <li class="list-group-item">
+          <span style="color: #4cbb7a">Iniciar o Projeto:</span>
+          <p>
+            Utilizar a linha de comando do Django para estruturar a
+            arquitetura base.
+          </p>
+        </li>
+        <li class="list-group-item">
+          <span style="color: #4cbb7a">Criar a Primeira Aplicação:</span>
+          <p>Dar vida aos componentes que farão o seu sistema funcionar.</p>
+        </li>
+        <li class="list-group-item">
+          <h2 style="border-bottom: none; font-size: 1.4rem; margin-top: 0.2rem">
+            <span style="color: #4cbb7a">Requisitos:</span>
+          </h2>
+          <p>
+            Ter o
+            <a href="https://www.python.org/downloads/" target="_blank" style="color: #4cbb7a; text-decoration: none; font-weight: bold;">Python</a>
+            instalado em sua máquina.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="sobre">
+      <h2>Sobre o projeto</h2>
+      <p>
+        Esta linha do tempo foi pensada para guiar desenvolvedores iniciantes
+        e intermediários através das etapas essenciais de um projeto Django.
+        Aqui você encontra dicas, boas práticas e uma visão clara do fluxo de
+        desenvolvimento.
+      </p>
+      <p>
+        <i class="bi bi-check-circle-fill" style="color: #4cbb7a"></i>
+        Foco em produtividade, organização e código limpo.
+      </p>
+      <p>
+        <i class="bi bi-arrow-right-circle" style="color: #4cbb7a"></i>
+        Acompanhe cada seção e evolua seu conhecimento.
+      </p>
+    </section>
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>
+        <i class="bi bi-envelope-paper fs-4 me-2" style="color: #4cbb7a"></i>
+        Dúvidas, sugestões ou feedback? Entre em contato através do canal
+        oficial do projeto ou pelas redes sociais.
+      </p>
+      <div class="d-flex flex-wrap gap-4 mt-3">
+        <a href="https://github.com/mellpg" target="_blank" rel="noopener noreferrer" class="link-social">
+          <i class="bi bi-github" style="color: #888;"></i> github
+        </a>
+        <a href="https://www.djangoproject.com/" target="_blank" rel="noopener noreferrer" class="link-social">
+          <i class="bi bi-twitter-x" style="color: #888;"></i> @django
+        </a>
+        <a href="https://groups.google.com/g/django-brasil" target="_blank" rel="noopener noreferrer" class="link-social">
+          <i class="bi bi-slack" style="color: #888;"></i> django-brasil
+        </a>
+      </div>
+    </section>
+
+    <section id="passos_iniciais">
+      <h2>Criando o ambiente virtual</h2>
+      <p>
+        Antes de começar a programar, precisamos isolar as dependências do seu projeto em um
+        <strong>ambiente virtual</strong>. Isso evita conflitos com outros projetos Python instalados no seu computador.
+      </p>
+
+      <h3 style="color: #4cbb7a; margin-top: 2rem;">
+        <i class="bi bi-1-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Criar o ambiente virtual
+      </h3>
+      <p>
+        Abra o terminal na pasta onde deseja criar seu projeto e execute:
+      </p>
+
+      <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;">
+<span style="color: #4cbb7a;"># Criar o ambiente virtual (Windows)</span>
+python -m venv venv
+
+<span style="color: #4cbb7a;"># Criar o ambiente virtual (Linux/Mac)</span>
+python3 -m venv venv</pre>
+
+      <p>
+        <i class="bi bi-info-circle me-2" style="color: #4cbb7a;"></i>
+        O comando <code>python -m venv venv</code> cria uma pasta chamada <code>venv/</code> com uma cópia isolada do Python.
+      </p>
+
+      <h3 style="color: #4cbb7a; margin-top: 2rem;">
+        <i class="bi bi-2-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Ativar o ambiente virtual
+      </h3>
+      <p>
+        Agora ative o ambiente para começar a usar o Python isolado:
+      </p>
+
+      <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;">
+<span style="color: #4cbb7a;"># Ativar no Windows</span>
+venv\Scripts\activate
+
+<span style="color: #4cbb7a;"># Ativar no Linux/Mac</span>
+source venv/bin/activate</pre>
+
+      <p>
+        <i class="bi bi-check-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Após ativar, você verá <code>(venv)</code> no início da linha do terminal, indicando que o ambiente está ativo.
+      </p>
+
+      <h3 style="color: #4cbb7a; margin-top: 2rem;">
+        <i class="bi bi-3-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Instalar o Django
+      </h3>
+      <p>
+        Com o ambiente ativo, instale o Django usando o <code>pip</code> (gerenciador de pacotes do Python):
+      </p>
+
+      <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;">
+<span style="color: #4cbb7a;"># Instalar a versão mais recente do Django</span>
+pip install django
+
+<span style="color: #4cbb7a;"># Instalar uma versão específica (ex: 5.0.4)</span>
+pip install django==5.0.4</pre>
+
+      <p>
+        <i class="bi bi-info-circle me-2" style="color: #4cbb7a;"></i>
+        Para verificar se o Django foi instalado corretamente: <code>python -m django --version</code>
+      </p>
+
+      <h3 style="color: #4cbb7a; margin-top: 2rem;">
+        <i class="bi bi-4-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Criar o projeto Django
+      </h3>
+      <p>
+        Com o Django instalado, crie seu primeiro projeto:
+      </p>
+
+      <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;">
+<span style="color: #4cbb7a;"># Criar o projeto (substitua "meu_projeto" pelo nome desejado)</span>
+django-admin startproject meu_projeto
+
+<span style="color: #4cbb7a;"># Entrar na pasta do projeto</span>
+cd meu_projeto</pre>
+
+      <p>
+        <i class="bi bi-check-circle-fill me-2" style="color: #4cbb7a;"></i>
+        A estrutura gerada será a do <strong>Nível 1</strong> que vimos anteriormente!
+      </p>
+
+      <h3 style="color: #4cbb7a; margin-top: 2rem;">
+        <i class="bi bi-5-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Rodar o servidor de desenvolvimento
+      </h3>
+      <p>
+        Para testar se tudo funcionou, rode o servidor embutido do Django:
+      </p>
+
+      <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;">
+<span style="color: #4cbb7a;"># Rodar o servidor</span>
+python manage.py runserver</pre>
+
+      <p>
+        <i class="bi bi-globe2 me-2" style="color: #4cbb7a;"></i>
+        Abra seu navegador em <a href="http://127.0.0.1:8000" target="_blank">http://127.0.0.1:8000</a> e veja a página de boas-vindas do Django!
+      </p>
+
+      <h3 style="color: #4cbb7a; margin-top: 2rem;">
+        <i class="bi bi-6-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Criar sua primeira aplicação
+      </h3>
+      <p>
+        Com o projeto criado, vamos criar um app para organizar o código:
+      </p>
+
+      <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;">
+<span style="color: #4cbb7a;"># Criar o app (substitua "meu_app" pelo nome desejado)</span>
+python manage.py startapp meu_app</pre>
+
+      <p>
+        <i class="bi bi-check-circle-fill me-2" style="color: #4cbb7a;"></i>
+        A estrutura gerada será a do <strong>Nível 2</strong> que veremos em breve!
+      </p>
+
+      <h3 style="color: #4cbb7a; margin-top: 2rem;">
+        <i class="bi bi-7-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Registrar o App no settings.py
+      </h3>
+      <p>
+        Agora precisamos informar ao Django que o app foi criado. Abra o arquivo <code>meu_projeto/settings.py</code> e adicione o app à lista <code>INSTALLED_APPS</code>:
+      </p>
+
+      <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin: 15px 0;">
+<span style="color: #888;"># meu_projeto/settings.py</span>
+<span style="color: #4cbb7a;">INSTALLED_APPS</span> = [
+    <span style="color: #4cbb7a;">'django.contrib.admin'</span>,
+    <span style="color: #4cbb7a;">'django.contrib.auth'</span>,
+    <span style="color: #4cbb7a;">'django.contrib.contenttypes'</span>,
+    <span style="color: #4cbb7a;">'django.contrib.sessions'</span>,
+    <span style="color: #4cbb7a;">'django.contrib.messages'</span>,
+    <span style="color: #4cbb7a;">'django.contrib.staticfiles'</span>,
+    <span style="color: #ffc107;">'meu_app'</span>,  <span style="color: #888;">Adicione esta linha com o nome do seu app</span>
+]</pre>
+
+      <p>
+        <i class="bi bi-check-circle-fill me-2" style="color: #4cbb7a;"></i>
+        Isso faz com que o Django reconheça seu app e inclua suas funcionalidades no projeto!
+      </p>
+
+      <div style="margin-top: 2rem;">
+        <h4 style="color: #e0e0e0; cursor: pointer;" data-bs-toggle="collapse" data-bs-target="#comandosUteis">
+          <i class="bi bi-terminal-fill me-2" style="color: #4cbb7a;"></i>
+          Comandos úteis do Django <i class="bi bi-chevron-down" style="color: #4cbb7a; font-size: 0.8rem;"></i>
+        </h4>
+        <div id="comandosUteis" class="collapse">
+          <ul class="list-group mt-2">
+            <li class="list-group-item">
+              <code>python manage.py runserver</code>
+              <span class="d-block text-secondary small">Roda o servidor de desenvolvimento</span>
+            </li>
+            <li class="list-group-item">
+              <code>python manage.py startapp nome_app</code>
+              <span class="d-block text-secondary small">Cria uma nova aplicação dentro do projeto</span>
+            </li>
+            <li class="list-group-item">
+              <code>python manage.py makemigrations</code>
+              <span class="d-block text-secondary small">Cria arquivos de migração para o banco de dados</span>
+            </li>
+            <li class="list-group-item">
+              <code>python manage.py migrate</code>
+              <span class="d-block text-secondary small">Aplica as migrações no banco de dados</span>
+            </li>
+            <li class="list-group-item">
+              <code>python manage.py createsuperuser</code>
+              <span class="d-block text-secondary small">Cria um usuário administrador para o painel admin</span>
+            </li>
+            <li class="list-group-item">
+              <code>pip freeze > requirements.txt</code>
+              <span class="d-block text-secondary small">Salva todas as dependências instaladas no requirements.txt</span>
+            </li>
+            <li class="list-group-item">
+              <code>deactivate</code>
+              <span class="d-block text-secondary small">Desativa o ambiente virtual</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; background-color: #0a0a0a; border: 1px solid #1f1f1f; border-radius: 16px; padding: 1.5rem;">
+        <h4 style="color: #e0e0e0; margin-bottom: 1rem;">
+          <i class="bi bi-check2-all me-2" style="color: #4cbb7a;"></i>
+          Resumo do fluxo de configuração
+        </h4>
+        <ul style="color: #d0d8d4; padding-left: 20px; list-style: none;">
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">1</span>
+            <code>python -m venv venv</code> — Criar ambiente virtual
+          </li>
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">2</span>
+            <code>venv\Scripts\activate</code> ou <code>source venv/bin/activate</code> — Ativar ambiente
+          </li>
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">3</span>
+            <code>pip install django</code> — Instalar Django
+          </li>
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">4</span>
+            <code>django-admin startproject meu_projeto</code> — Criar projeto
+          </li>
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">5</span>
+            <code>cd meu_projeto</code> — Entrar na pasta do projeto
+          </li>
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">6</span>
+            <code>python manage.py runserver</code> — Rodar servidor (teste)
+          </li>
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">7</span>
+            <code>python manage.py startapp meu_app</code> — Criar aplicação
+          </li>
+          <li style="margin-bottom: 10px;">
+            <span class="badge bg-success me-2">8</span>
+            <code>settings.py</code> — Adicionar <code>'meu_app'</code> ao <code>INSTALLED_APPS</code>
+          </li>
+          <li style="margin-bottom: 10px; padding: 12px; background-color: #111; border-radius: 8px; border-left: 3px solid #4cbb7a; margin-top: 8px;">
+            <span style="color: #4cbb7a; font-weight: 600;">Ambiente pronto para desenvolver!</span>
+            <span class="d-block text-secondary small" style="margin-top: 4px;">
+              Agora você tem o Django instalado, um projeto criado, um app registrado e pronto para começar a programar!
+            </span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="Parte1">
+      <h3>Estrutura inicial:</h3>
+      <li class="list-group-item">
+        <h3><span style="color: #4cbb7a">NÍVEL 1: A Estrutura Inicial</span></h3>
+        <p>O que já vem pronto após executar <code>django-admin startproject meu_projeto</code></p>
+        <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin-top: 15px;">
+meu_projeto/
+│
+├── manage.py              <span style="color: #4cbb7a;"># Script de gerenciamento</span>
+└── meu_projeto/           <span style="color: #4cbb7a;"># Pacote principal do projeto</span>
+    ├── __init__.py        <span style="color: #888;"># Indica que é um pacote Python</span>
+    ├── settings.py        <span style="color: #888;"># Configurações do projeto</span>
+    ├── urls.py            <span style="color: #888;"># Mapeamento de URLs</span>
+    ├── asgi.py            <span style="color: #888;"># Servidor ASGI</span>
+    └── wsgi.py            <span style="color: #888;"># Servidor WSGI (deploy)</span>
+          </pre>
+        <p class="text-secondary mt-2">
+          <i class="bi bi-info-circle me-2" style="color: #4cbb7a;"></i>
+          Comando: <code>django-admin startproject meu_projeto</code>
+        </p>
+      </li>
+
+      <p class="text-secondary small">Exemplo da estrutura gerada pelo comando <code>django-admin startproject</code></p>
+
+      <h2>Explicação:</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h3><span style="color: #4cbb7a">manage.py:</span></h3>
+          <p>
+            O seu controle remoto do projeto no terminal. Você nunca edita este arquivo. Você apenas o executa para dar ordens ao Django, como rodar o servidor (python manage.py runserver) ou criar tabelas no banco.
+          </p>
+        </li>
+        <li class="list-group-item">
+          <h3><span style="color: #4cbb7a">meu_projeto/ (Subpasta interna):</span></h3>
+          <p>É o pacote Python que contém as configurações do seu site.</p>
+          <ul style="color: #d0d8d4; padding-left: 20px; margin-top: 8px; list-style: none;">
+            <li><i class="bi bi-file-earmark-code me-2" style="color: #4cbb7a;"></i> <code>settings.py</code> - Configurações do projeto</li>
+            <p>Módulo central de configurações da aplicação. É responsável por armazenar variáveis de ambiente, credenciais de banco de dados, fuso horário, diretrizes de segurança e a relação de recursos ativos.</p>
+            <li><i class="bi bi-link-45deg me-2" style="color: #4cbb7a;"></i> <code>urls.py</code> - Mapeamento de URLs</li>
+            <p>Mapeador de rotas (URLconf). Define os endereços suportados pela aplicação e direciona o fluxo de requisições web para os respectivos manipuladores (views) responsáveis por processá-las.</p>
+            <li><i class="bi bi-server me-2" style="color: #4cbb7a;"></i> <code>wsgi.py</code> - Servidor WSGI</li>
+            <p>(Web Server Gateway Interface): Interface para servidores web tradicionais (ex.: Apache, Gunicorn). É utilizada para disponibilizar a aplicação em produção de maneira síncrona, processando uma requisição por vez em cada processo.</p>
+            <li><i class="bi bi-hdd-stack me-2" style="color: #4cbb7a;"></i> <code>asgi.py</code> - Servidor ASGI</li>
+            <p>(Asynchronous Server Gateway Interface): O padrão moderno e assíncrono do Django. Permite que o servidor gerencie conexões simultâneas e de alta performance, viabilizando tecnologias em tempo real como WebSockets, notificações instantâneas e chats.</p>
+            <li><i class="bi bi-file-earmark me-2" style="color: #4cbb7a;"></i> <code>__init__.py</code> - Inicializador do Python</li>
+            <p>Arquivo de inicialização que indica ao interpretador Python que o diretório deve ser tratado como um pacote, permitindo que seus módulos sejam portados por outros scripts.</p>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section id="hello_world">
+      <h3>Seu primeiro Hello World!</h3>
+      <li class="list-group-item">
+        <h3><span style="color: #4cbb7a">NÍVEL 1: A Estrutura Inicial</span></h3>
+        <p>O teste em sua máquina após executar <code>python manage.py runserver</code></p>
+        <p>Estrutura para fazer um Hello World em Django Renderizando um HTML:</p>
+
+        <h2><span style="color: white">Views.py</span></h2>
+        <p>Views.py consiste em um arquivo onde é localizado a lógica de negócios</p>
+        <p>em aplicações web construídas com o framework <span style="color: #4cbb7a; font-weight: 600;">Django</span>
+          em Python.</p>
+        <p>Ele recebe requisições HTTP dos usuários, processa as informações e retorna</p>
+        <p>uma resposta.</p>
+        <details style="color: #d0d8d4; margin-bottom: 1rem;">
+          <summary style="color: #4cbb7a; cursor: pointer; font-weight: 500;">Clique para saber mais</summary>
+          <p style="margin-top: 8px;">Pode retornar uma página HTML, redirecionamento ou erro.</p>
+        </details>
+
+        <div class="code-block">
+          <button class="btn-copy-code" onclick="copiarCodigo(this)">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+          <pre><span style="color: #888;"># meu_app/views.py</span>
+<span style="color: #4cbb7a;">from django.shortcuts import render</span>
+
+<span style="color: #ffc107;">def</span> <span style="color: #4cbb7a;">hello_world</span>(request):
+    contexto = {
+        <span style="color: #4cbb7a;">'nome'</span>: <span style="color: #4cbb7a;">'João'</span>,
+        <span style="color: #4cbb7a;">'saudacao'</span>: <span style="color: #4cbb7a;">'Bem-vindo ao Django!'</span>
+    }
+    <span style="color: #4cbb7a;">return</span> render(request, <span style="color: #4cbb7a;">'hello.html'</span>, contexto)</pre>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="img-container">
+            <img src="assets/images/views.png" alt="print da tela views.py" class="img-padrao">
+            <p class="legenda">
+              <i class="bi bi-code-square"></i>
+              Exemplo do arquivo <code>views.py</code>
+            </p>
+          </div>
+        </div>
+
+        <h2><span style="color: white">Urls.py do app</span></h2>
+        <p>O arquivo urls.py de um aplicativo (app) no Django é o responsável</p>
+        <p>por definir as rotas (endereços da web) específicas daquela parte</p>
+        <p>do sistema. Ele atua como um mapa que liga a URL digitada no navegador</p>
+        <p>a uma função ou classe específica (as views), ajudando a manter</p>
+        <p>o código organizado e modular.</p>
+
+        <div class="code-block">
+          <button class="btn-copy-code" onclick="copiarCodigo(this)">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+          <pre><span style="color: #888;"># meu_app/urls.py</span>
+<span style="color: #4cbb7a;">from django.urls import path</span>
+<span style="color: #4cbb7a;">from . import views</span>
+
+<span style="color: #4cbb7a;">urlpatterns</span> = [
+    <span style="color: #ffc107;">path</span>(<span style="color: #4cbb7a;">''</span>, views.hello_world, <span style="color: #4cbb7a;">name='hello'</span>),
+]</pre>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="img-container">
+            <img src="assets/images/urls_app.png" alt="print da tela urls.py do app" class="img-padrao">
+            <p class="legenda">
+              <i class="bi bi-code-square"></i>
+              Exemplo do arquivo <code>urls.py</code> do app
+            </p>
+          </div>
+        </div>
+
+        <h2><span style="color: white">Urls.py do Projeto</span></h2>
+        <p>O arquivo urls.py funciona como um roteador principal do seu projeto (geralmente em</p>
+        <p>frameworks como o Django). Ele mapeia os endereços web digitados no navegador (ex:</p>
+        <p>/home ou /admin) e os direciona para a função ou classe responsável por processar a</p>
+        <p>lógica e retornar a página solicitada.</p>
+
+        <div class="code-block">
+          <button class="btn-copy-code" onclick="copiarCodigo(this)">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+          <pre><span style="color: #888;"># meu_projeto/urls.py</span>
+<span style="color: #4cbb7a;">from django.contrib import admin</span>
+<span style="color: #4cbb7a;">from django.urls import path, include</span>
+
+<span style="color: #4cbb7a;">urlpatterns</span> = [
+    <span style="color: #ffc107;">path</span>(<span style="color: #4cbb7a;">'admin/'</span>, admin.site.urls),
+    <span style="color: #ffc107;">path</span>(<span style="color: #4cbb7a;">''</span>, include(<span style="color: #4cbb7a;">'meu_app.urls'</span>)), <span style="color: #888;"># Inclui as rotas do app</span>
+]</pre>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="img-container">
+            <img src="assets/images/urls.png" class="img-padrao" alt="print da tela urls do projeto">
+            <p class="legenda">
+              <i class="bi bi-code-square"></i>
+              Exemplo do arquivo <code>urls.py</code> do projeto
+            </p>
+          </div>
+        </div>
+
+        <h2><span style="color: white">Crie a pasta templates</span></h2>
+        <p>A pasta templates é o diretório no Django que armazena os arquivos de interface (como</p>
+        <p>HTML) da sua aplicação. Ele separa o design visual do código de lógica (Python) e utiliza</p>
+        <p>o Django Template Language (DTL), para inserir dados dinâmicos do banco de dados nas páginas web.</p>
+
+        <div class="code-block">
+          <button class="btn-copy-code" onclick="copiarCodigo(this)">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+          <pre>meu_app/
+└── templates/
+    └── hello.html</pre>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="img-container">
+            <img src="assets/images/pasta_templates.PNG" class="img-padrao" alt="print da tela da pasta templates">
+            <p class="legenda">
+              <i class="bi bi-folder-fill"></i>
+              Estrutura da pasta <code>templates/</code>
+            </p>
+          </div>
+        </div>
+
+        <h2><span style="color: white">Crie o HTML</span></h2>
+        <p>O HTML dentro da pasta templates é renderizado pelo Django com dados dinâmicos.</p>
+
+        <div class="code-block">
+          <button class="btn-copy-code" onclick="copiarCodigo(this)">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+          <pre><span style="color: #888;">&lt;!-- templates/hello.html --&gt;</span>
+<span style="color: #888;">&lt;!DOCTYPE html&gt;</span>
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Hello World!&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Olá, {{ nome }}!&lt;/h1&gt;
+    &lt;p&gt;{{ saudacao }}&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <div class="img-container">
+            <img src="assets/images/html.png" class="img-padrao" alt="print da tela do html">
+            <p class="legenda">
+              <i class="bi bi-filetype-html"></i>
+              Exemplo do arquivo <code>hello.html</code>
+            </p>
+          </div>
+        </div>
+
+        <h2><span style="color: white">Execute as migrações, inicie o servidor e abra no navegador</span></h2>
+        <p>Com todos os arquivos criados, execute os comandos abaixo para ver seu Hello World funcionando:</p>
+
+        <div class="code-block">
+          <button class="btn-copy-code" onclick="copiarCodigo(this)">
+            <i class="bi bi-clipboard"></i> Copiar
+          </button>
+          <pre><span style="color: #4cbb7a;"># Executar migrações (se tiver modelos)</span>
+python manage.py makemigrations
+python manage.py migrate
+
+<span style="color: #4cbb7a;"># Rodar o servidor</span>
+python manage.py runserver
+
+<span style="color: #4cbb7a;"># Abrir no navegador</span>
+<span style="color: #888;"># http://127.0.0.1:8000</span></pre>
+          <h2>Resultado Final: </h2>
+          <img src="assets/images/resultado_esperado.PNG" class="img-padrao" alt="prunt da tela mostrando hello world">
+        </div>
+
+        <div style="background-color: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 12px; padding: 20px; text-align: center; margin: 20px 0;">
+          <p style="color: white; font-size: 1.5rem; font-weight: 700; margin: 0;">
+            Hello World funcionando!
+          </p>
+          <p style="color: #888; margin: 8px 0 0 0;">
+            Seu primeiro site Django está no ar
+          </p>
+        </div>
+      </li>
+    </section>
+
+    <section id="Parte2">
+      <h3>Estrutura intermediária:</h3>
+      <p>O desenvolvimento do site está em andamento. A etapa atual exige a implementação de interfaces de usuário
+        (templates), validação de dados via formulários e adequação às boas práticas de segurança. Embora o Django não
+        forneça esses arquivos nativamente, é fundamental criá-los manualmente para garantir a integridade e a
+        manutenibilidade do código.</p>
+
+      <li class="list-group-item">
+        <h3><span style="color: #4cbb7a">NÍVEL 2: Criando sua Primeira Aplicação</span></h3>
+        <p>O que acontece após executar <code>python manage.py startapp meu_app</code></p>
+
+        <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin-top: 15px;">
+meu_projeto/
+│   ├── manage.py
+│   ├── db.sqlite3          <span style="color: #4cbb7a;">Surge após rodar o servidor</span>
+│   └── meu_projeto/
+│
+└── meu_app/                <span style="color: #4cbb7a;">Sua primeira aplicação Django</span>
+    ├── migrations/         <span style="color: #888;"># Histórico de alterações no banco</span>
+    │   └── __init__.py
+    ├── __init__.py
+    ├── admin.py            <span style="color: #888;"># Configuração do painel administrativo</span>
+    ├── apps.py             <span style="color: #888;"># Configuração do app</span>
+    ├── models.py           <span style="color: #888;"># Definição dos modelos (tabelas)</span>
+    ├── tests.py            <span style="color: #888;"># Testes automatizados</span>
+    └── views.py            <span style="color: #888;"># Lógica de negócio (respostas HTTP)</span>
+          </pre>
+
+        <p class="text-secondary mt-2">
+          <i class="bi bi-info-circle me-2" style="color: #4cbb7a;"></i>
+          Comando: <code>python manage.py startapp meu_app</code>
+        </p>
+      </li>
+
+      <p class="text-secondary small">Exemplo da estrutura a ser criada pelo usuário
+        <code>python manage.py startapp</code>
+      </p>
+
+      <h2>Explicação:</h2>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h3><span style="color: #4cbb7a">db.sqlite3:</span></h3>
+          <p>
+            O arquivo db.sqlite3 é o banco de dados padrão que o Django cria automaticamente para armazenar todas as
+            informações da sua aplicação. Ele é leve, não requer instalação de servidores complexos e salva todos os
+            seus dados (usuários, posts, produtos) diretamente em um único arquivo dentro do seu projeto.
+          </p>
+
+          <div style="margin-top: 15px;">
+            <h4 style="color: #e0e0e0; font-size: 1.1rem; margin-bottom: 10px;">
+              <i class="bi bi-info-circle me-2" style="color: #4cbb7a;"></i>O que você precisa saber:
+            </h4>
+
+            <ul style="color: #d0d8d4; padding-left: 20px; list-style: none;">
+              <li style="margin-bottom: 10px;">
+                <i class="bi bi-check-circle-fill me-2" style="color: #4cbb7a;"></i>
+                <strong style="color: #e8e8e8;">Zero configuração:</strong>
+                <span style="color: #d0d8d4;">Ele já vem pronto para uso, o que o torna a melhor opção para aprendizado,
+                  testes e desenvolvimento de sites.</span>
+              </li>
+              <li style="margin-bottom: 10px;">
+                <i class="bi bi-arrow-repeat me-2" style="color: #4cbb7a;"></i>
+                <strong style="color: #e8e8e8;">Como ele funciona:</strong>
+                <span style="color: #d0d8d4;">O Django usa uma ferramenta chamada ORM (Object-Relational Mapper). Você
+                  escreve código em Python, e o Django traduz e salva essas informações no db.sqlite3
+                  automaticamente.</span>
+              </li>
+              <li style="margin-bottom: 10px;">
+                <i class="bi bi-exclamation-triangle-fill me-2" style="color: #ffc107;"></i>
+                <strong style="color: #e8e8e8;">Para projetos grandes ou em produção:</strong>
+                <span style="color: #d0d8d4;">O SQLite não lida bem com milhares de pessoas acessando e escrevendo dados
+                  ao mesmo tempo. Nesses casos, migre para bancos mais robustos como PostgreSQL ou MySQL.</span>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <li class="list-group-item">
+          <h3><span style="color: #4cbb7a">Exemplos de estrutura de arquivos e pastas — Nível Intermediário:</span></h3>
+          <p>
+            Conforme o projeto cresce, novos arquivos e pastas são adicionados para organizar melhor o código.
+          </p>
+
+          <div class="accordion mt-3" id="accordionFiles">
+            <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#env">
+                  <i class="bi bi-shield-lock me-2" style="color: #4cbb7a;"></i> .env
+                </button>
+              </h2>
+              <div id="env" class="accordion-collapse collapse" data-bs-parent="#accordionFiles">
+                <div class="accordion-body text-secondary">
+                  <strong>Variáveis de ambiente</strong> - chaves secretas, senhas de banco de dados, API keys.
+                  <span class="badge bg-danger">🚫 Nunca commitar</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#gitignore">
+                  <i class="bi bi-git me-2" style="color: #ffc107;"></i> .gitignore
+                </button>
+              </h2>
+              <div id="gitignore" class="accordion-collapse collapse" data-bs-parent="#accordionFiles">
+                <div class="accordion-body text-secondary">
+                  Lista de arquivos/pastas que o Git deve ignorar: <code>__pycache__/</code>, <code>.env</code>,
+                  <code>db.sqlite3</code>, <code>venv/</code>.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#requirements">
+                  <i class="bi bi-list-check me-2" style="color: #0dcaf0;"></i> requirements.txt
+                </button>
+              </h2>
+              <div id="requirements" class="accordion-collapse collapse" data-bs-parent="#accordionFiles">
+                <div class="accordion-body text-secondary">
+                  Lista todas as dependências do projeto. Use <code>pip install -r requirements.txt</code> para instalar
+                  tudo.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#templates">
+                  <i class="bi bi-file-earmark-code me-2" style="color: #6f42c1;"></i> templates/
+                </button>
+              </h2>
+              <div id="templates" class="accordion-collapse collapse" data-bs-parent="#accordionFiles">
+                <div class="accordion-body text-secondary">
+                  Pasta para arquivos HTML (telas). Use <code>base.html</code> como layout principal e crie subpastas
+                  por app.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#static">
+                  <i class="bi bi-images me-2" style="color: #20c997;"></i> static/
+                </button>
+              </h2>
+              <div id="static" class="accordion-collapse collapse" data-bs-parent="#accordionFiles">
+                <div class="accordion-body text-secondary">
+                  Guarda arquivos estáticos: CSS, JavaScript, imagens. Estrutura: <code>static/css/</code>,
+                  <code>static/js/</code>, <code>static/img/</code>.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#urlsapp">
+                  <i class="bi bi-link-45deg me-2" style="color: #d63384;"></i> urls.py (app)
+                </button>
+              </h2>
+              <div id="urlsapp" class="accordion-collapse collapse" data-bs-parent="#accordionFiles">
+                <div class="accordion-body text-secondary">
+                  Arquivo criado dentro do app para organizar as rotas específicas, mantendo o projeto mais limpo.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item bg-dark border-secondary">
+              <h2 class="accordion-header">
+                <button class="accordion-button bg-dark text-white collapsed" type="button" data-bs-toggle="collapse"
+                  data-bs-target="#forms">
+                  <i class="bi bi-ui-checks me-2" style="color: #fd7e14;"></i> forms.py
+                </button>
+              </h2>
+              <div id="forms" class="accordion-collapse collapse" data-bs-parent="#accordionFiles">
+                <div class="accordion-body text-secondary">
+                  Define formulários Django para entrada e validação de dados antes de salvar no banco.
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="parte3">
+      <h3>Estrutura Avançada</h3>
+      <p>O projeto atual alcançou grande escala, atendendo milhares de usuários. Para garantir</p>
+      <p>níveis elevados de segurança, desempenho e manutenção por uma equipe de</p>
+      <p>desenvolvedores, a tradicional estrutura monolítica de arquivos isolados (como views.py e</p>
+      <p>models.py) foi substituída por uma arquitetura modular baseada em diretórios.</p>
+
+      <ul style="color: #d0d8d4; padding-left: 20px; margin-top: 8px; list-style: none;">
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-folder-fill me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">media/ (Pasta):</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Diferente da pasta static (que guarda seus códigos de design), a pasta media/ guarda tudo que os usuários
+            enviam para o site: fotos de perfil, comprovantes em PDF, planilhas, etc.
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-gear-fill me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">meu_projeto/settings/ (Pasta que substitui o settings.py):</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Projetos profissionais não misturam configurações de desenvolvimento com as de produção. Nós dividimos o
+            cérebro em três partes: <code>base.py</code> (comum a todos), <code>local.py</code> (para rodar na sua
+            máquina) e <code>production.py</code> (com segurança reforçada e conexão com servidores reais de banco de
+            dados).
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-code-slash me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">meu_app/serializers.py:</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Se o seu Django não vai renderizar páginas HTML diretamente, mas sim enviar dados estruturados para um
+            aplicativo de celular (Flutter/React Native) ou um site em React, este arquivo traduz seus objetos do banco
+            de dados para o formato JSON.
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-server me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">meu_app/services.py:</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Para evitar que o arquivo views.py fique lotado com milhares de linhas, toda lógica de negócios complexa
+            (como regras de cálculo de impostos, comunicação com gateways de pagamento como Stripe/Pagar.me) é isolada
+            aqui dentro.
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-broadcast me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">meu_app/signals.py:</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Cria "ouvintes" automáticos. Por exemplo: "Toda vez que uma linha for criada na tabela de Usuário, dispare
+            um sinal que executa a função de enviar um e-mail de boas-vindas".
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-shield-check me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">meu_app/middleware.py:</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Arquivos que agem como "seguranças" nas portas de entrada e saída do seu site. Eles podem analisar cada
+            requisição que chega e, se detectarem algo suspeito, bloqueiam o usuário antes mesmo de ele chegar nas suas
+            views.
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-terminal-fill me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">management/commands/ (Pastas):</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Permitem que você crie novos comandos para o terminal. Se você criar o arquivo <code>limpar_dados.py</code>
+            aí dentro, poderá abrir seu terminal e rodar <code>python manage.py limpar_dados</code>. É fantástico para
+            criar rotinas automáticas de manutenção no servidor.
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-box-seam me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">Dockerfile e docker-compose.yml:</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Arquivos de infraestrutura. Eles servem para empacotar todo o seu projeto Django dentro de uma "caixa
+            isolada" (container Docker) que pode rodar exatamente da mesma forma em qualquer computador ou servidor do
+            mundo, sem problemas de "na minha máquina funciona".
+          </p>
+        </li>
+
+        <li style="margin-bottom: 15px;">
+          <i class="bi bi-clock-fill me-2" style="color: #4cbb7a;"></i>
+          <strong style="color: #e8e8e8;">meu_projeto/celery.py:</strong>
+          <p style="color: #d0d8d4; margin: 4px 0 0 25px; font-size: 0.95rem;">
+            Permite rodar tarefas extremamente demoradas (como enviar 5.000 PDFs por e-mail ou processar uma planilha
+            gigante) em segundo plano, sem travar a navegação do usuário no site.
+          </p>
+        </li>
+      </ul>
+
+      <li class="list-group-item">
+        <h3><span style="color: #4cbb7a">NÍVEL 3: Organização Avançada</span></h3>
+        <p>Arquivos de configuração e pastas estáticas</p>
+
+        <pre style="background-color: #0a0a0a; color: #d0d8d4; padding: 20px; border-radius: 12px; border: 1px solid #2a2a2a; overflow-x: auto; font-family: 'Courier New', monospace; font-size: 0.9rem; margin-top: 15px;">
+meu_projeto/
+│   ├── manage.py
+│   ├── db.sqlite3
+│   ├── .env                <span style="color: #ffc107;">🔒 Variáveis de ambiente (senhas, chaves secretas)</span>
+│   ├── .gitignore          <span style="color: #ffc107;">🚫 Arquivos que o Git deve ignorar</span>
+│   ├── requirements.txt    <span style="color: #ffc107;">📦 Lista de dependências do projeto</span>
+│   │
+│   ├── templates/          <span style="color: #4cbb7a;">🎨 Pasta para telas HTML</span>
+│   │   └── base.html       <span style="color: #888;"># Layout base do site</span>
+│   └── static/             <span style="color: #4cbb7a;">🖼️ Arquivos estáticos (CSS, JS, imagens)</span>
+│       ├── css/            <span style="color: #888;"># Estilos</span>
+│       └── js/             <span style="color: #888;"># Scripts</span>
+│
+├── meu_projeto/            <span style="color: #888;"># Configurações do projeto</span>
+└── meu_app/                <span style="color: #888;"># Sua aplicação</span>
+    ├── ... (arquivos anteriores)
+    ├── urls.py             <span style="color: #4cbb7a;">🔗 Rotas específicas do app</span>
+    └── forms.py            <span style="color: #4cbb7a;">📝 Validação de formulários</span>
+          </pre>
+
+        <div class="mt-3">
+          <span class="badge bg-success me-2"><i class="bi bi-check-circle"></i> .env</span>
+          <span class="badge bg-warning text-dark me-2"><i class="bi bi-git"></i> .gitignore</span>
+          <span class="badge bg-info text-dark me-2"><i class="bi bi-list-check"></i> requirements.txt</span>
+          <span class="badge bg-primary me-2"><i class="bi bi-file-earmark-code"></i> templates/</span>
+          <span class="badge bg-secondary me-2"><i class="bi bi-images"></i> static/</span>
+        </div>
+      </li>
+    </section>
+
+    <section id="demonstracao">
+      <h2><i class="bi bi-terminal me-2" style="color: #4cbb7a"></i> Demonstração</h2>
+      <p>
+        Clique em qualquer arquivo abaixo para abrir o <strong>Inspetor Dinâmico</strong> na lateral direita.
+        Lá você poderá analisar o código de exemplo e copiá-lo para usar como "cola" no seu projeto.
+      </p>
+
+      <div class="row g-4 mt-2">
+        <div class="col-12 col-md-4">
+          <h4 class="text-white border-bottom border-secondary pb-2 mb-3" style="font-size: 1.1rem;">
+            <span class="badge bg-success me-2">Nível 1</span> O ambiente inicial do Projeto
+          </h4>
+          <div class="d-flex flex-column gap-2">
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="manage.py" data-codigo="#!/usr/bin/env python
+import os
+import sys
+
+def main():
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'meu_projeto.settings')
+    try:
+        from django.core.management import execute_from_command_line
+    except ImportError as exc:
+        raise ImportError(" Couldn't import Django. Are you sure it's installed?") from exc
+              execute_from_command_line(sys.argv) if __name__=='__main__' : main()">
+              <i class="bi bi-file-earmark-code me-2" style="color: #4cbb7a;"></i> <code>manage.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Seu controle remoto do projeto via terminal</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="settings.py" data-codigo="SECRET_KEY = 'django-insecure-sua-chave-aqui'
+DEBUG = True
+ALLOWED_HOSTS = []
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'meu_app',
+]">
+              <i class="bi bi-gear-fill me-2" style="color: #4cbb7a;"></i> <code>settings.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Cérebro do projeto com todas as configurações</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="urls.py (Projeto)" data-codigo="from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('meu_app.urls')),
+]">
+              <i class="bi bi-link-45deg me-2" style="color: #4cbb7a;"></i> <code>urls.py (Projeto)</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Roteador principal de URLs do projeto</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="wsgi.py" data-codigo="import os
+from django.core.wsgi import get_wsgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'meu_projeto.settings')
+
+application = get_wsgi_application()">
+              <i class="bi bi-server me-2" style="color: #4cbb7a;"></i> <code>wsgi.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Servidor WSGI para deploy síncrono</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="asgi.py" data-codigo="import os
+from django.core.asgi import get_asgi_application
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'meu_projeto.settings')
+
+application = get_asgi_application()">
+              <i class="bi bi-hdd-stack me-2" style="color: #4cbb7a;"></i> <code>asgi.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Servidor ASGI para WebSockets e tarefas
+                assíncronas</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="__init__.py"
+              data-codigo="# Arquivo vazio que indica que a pasta é um pacote Python">
+              <i class="bi bi-file-earmark me-2" style="color: #4cbb7a;"></i> <code>__init__.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Indica que o diretório é um pacote Python</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h4 class="text-white border-bottom border-secondary pb-2 mb-3" style="font-size: 1.1rem;">
+            <span class="badge bg-info me-2">Nível 2</span> Estrutura do App
+          </h4>
+          <div class="d-flex flex-column gap-2">
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="models.py" data-codigo="from django.db import models
+
+class Cliente(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.nome">
+              <i class="bi bi-database-fill me-2" style="color: #4cbb7a;"></i> <code>models.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Define as tabelas do banco de dados</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="views.py" data-codigo="from django.shortcuts import render
+from .models import Cliente
+
+def listar_clientes(request):
+    clientes = Cliente.objects.all()
+    return render(request, 'clientes/lista.html', {'clientes': clientes})">
+              <i class="bi bi-eye-fill me-2" style="color: #4cbb7a;"></i> <code>views.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Controlador lógico que processa requisições</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="admin.py" data-codigo="from django.contrib import admin
+from .models import Cliente
+
+@admin.register(Cliente)
+class ClienteAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'email', 'criado_em')
+    search_fields = ('nome',)">
+              <i class="bi bi-person-badge-fill me-2" style="color: #4cbb7a;"></i> <code>admin.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Registra modelos no painel admin do Django</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="apps.py" data-codigo="from django.apps import AppConfig
+
+class MeuAppConfig(AppConfig):
+    default_auto_field = 'django.db.models.BigAutoField'
+    name = 'meu_app'">
+              <i class="bi bi-app-indicator me-2" style="color: #4cbb7a;"></i> <code>apps.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Configuração e metadados do aplicativo</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="tests.py" data-codigo="from django.test import TestCase
+from .models import Cliente
+
+class ClienteModelTest(TestCase):
+    def test_criar_cliente(self):
+        cliente = Cliente.objects.create(
+            nome='João Silva',
+            email='joao@email.com'
+        )
+        self.assertEqual(cliente.nome, 'João Silva')">
+              <i class="bi bi-check2-circle me-2" style="color: #4cbb7a;"></i> <code>tests.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Testes automatizados do seu aplicativo</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="migrations/" data-codigo="# migrations/
+# Pasta que guarda o histórico de alterações no banco de dados">
+              <i class="bi bi-clock-history me-2" style="color: #4cbb7a;"></i> <code>migrations/</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Histórico de alterações no banco de dados</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h4 class="text-white border-bottom border-secondary pb-2 mb-3" style="font-size: 1.1rem;">
+            <span class="badge bg-warning text-dark me-2">Nível 3</span> Intermediário
+          </h4>
+          <div class="d-flex flex-column gap-2">
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="forms.py" data-codigo="from django import forms
+from .models import Cliente
+
+class ClienteForm(forms.ModelForm):
+    class Meta:
+        model = Cliente
+        fields = ['nome', 'email']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if 'gmail.com' not in email:
+            raise forms.ValidationError('Use apenas e-mails do Gmail.')
+        return email">
+              <i class="bi bi-ui-checks me-2" style="color: #4cbb7a;"></i> <code>forms.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Validação e segurança de dados do usuário</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="urls.py (App)" data-codigo="from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('clientes/', views.listar_clientes, name='lista_clientes'),
+]">
+              <i class="bi bi-link-45deg me-2" style="color: #4cbb7a;"></i> <code>urls.py (App)</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Rotas específicas do seu aplicativo</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo=".env" data-codigo="DEBUG=False
+SECRET_KEY=mudar-em-producao-super-secreta-123
+DB_NAME=projeto_django
+DB_USER=postgres
+DB_PASSWORD=senha_secreta_do_banco">
+              <i class="bi bi-shield-lock-fill me-2" style="color: #4cbb7a;"></i> <code>.env</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Variáveis de ambiente (chaves e senhas)</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo=".gitignore" data-codigo=".env
+db.sqlite3
+__pycache__/
+*.pyc
+.venv/
+media/
+staticfiles/">
+              <i class="bi bi-git me-2" style="color: #4cbb7a;"></i> <code>.gitignore</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Arquivos que o Git deve ignorar</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="requirements.txt" data-codigo="django==5.0.4
+django-environ==0.11.2
+psycopg2-binary==2.9.9
+gunicorn==21.2.0">
+              <i class="bi bi-list-check me-2" style="color: #4cbb7a;"></i> <code>requirements.txt</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Lista de dependências do projeto</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="templates/" data-codigo="templates/
+└── meu_app/
+    ├── base.html          # Layout base
+    └── lista.html         # Página de listagem">
+              <i class="bi bi-file-earmark-code me-2" style="color: #4cbb7a;"></i> <code>templates/</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Arquivos HTML da interface do usuário</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-4">
+        <div class="col-12 col-md-4">
+          <h4 class="text-white border-bottom border-secondary pb-2 mb-3" style="font-size: 1.1rem;">
+            <span class="badge bg-danger me-2">Nível 4</span> Avançado / APIs
+          </h4>
+          <div class="d-flex flex-column gap-2">
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="serializers.py" data-codigo="from rest_framework import serializers
+from .models import Cliente
+
+class ClienteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Cliente
+        fields = ['id', 'nome', 'email', 'criado_em']">
+              <i class="bi bi-code-slash me-2" style="color: #4cbb7a;"></i> <code>serializers.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Converte modelos para JSON (APIs)</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="services.py" data-codigo="from django.core.mail import send_mail
+
+class FinanceiroService:
+    @staticmethod
+    def processar_pagamento(cliente, valor):
+        print(f'Comunicando com gateway de pagamento para {cliente.nome}')
+        send_mail('Pagamento Confirmado', 'Obrigado!', 'sistema@site.com', [cliente.email])
+        return True">
+              <i class="bi bi-cpu-fill me-2" style="color: #4cbb7a;"></i> <code>services.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Isola regras de negócio complexas</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="signals.py" data-codigo="from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
+
+@receiver(post_save, sender=User)
+def criar_perfil_usuario(sender, instance, created, **kwargs):
+    if created:
+        print(f'Novo usuário criado: {instance.username}')">
+              <i class="bi bi-broadcast me-2" style="color: #4cbb7a;"></i> <code>signals.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Gatilhos automáticos do banco de dados</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="middleware.py" data-codigo="import time
+
+class LogTempoProcessamentoMiddleware:
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        inicio = time.time()
+        response = self.get_response(request)
+        total = time.time() - inicio
+        print(f'Página processada em {total:.2f}s')
+        return response">
+              <i class="bi bi-shield-check me-2" style="color: #4cbb7a;"></i> <code>middleware.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Intercepta e filtra requisições HTTP</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="validators.py" data-codigo="import re
+from django.core.exceptions import ValidationError
+
+def validar_cpf(value):
+    if not re.match(r'^[0-9]{11}$', value):
+        raise ValidationError('CPF deve ter 11 dígitos')
+    return value">
+              <i class="bi bi-check2-square me-2" style="color: #4cbb7a;"></i> <code>validators.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Validadores personalizados para campos</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h4 class="text-white border-bottom border-secondary pb-2 mb-3" style="font-size: 1.1rem;">
+            <span class="badge bg-dark text-warning border border-warning me-2">Nível 5</span> Muito Avançado
+          </h4>
+          <div class="d-flex flex-column gap-2">
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="celery.py" data-codigo="import os
+from celery import Celery
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'meu_projeto.settings')
+app = Celery('meu_projeto')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()">
+              <i class="bi bi-clock-fill me-2" style="color: #4cbb7a;"></i> <code>celery.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Tarefas assíncronas em segundo plano</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="tasks.py" data-codigo="from celery import shared_task
+from django.core.mail import send_mail
+
+@shared_task
+def enviar_email_em_massa(destinatarios, assunto, mensagem):
+    for email in destinatarios:
+        send_mail(assunto, mensagem, 'no-reply@site.com', [email])
+    return f'Emails enviados para {len(destinatarios)} destinatários'">
+              <i class="bi bi-envelope-paper-fill me-2" style="color: #4cbb7a;"></i> <code>tasks.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Tarefas assíncronas do Celery</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="Dockerfile" data-codigo="FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . /app/
+
+CMD ['gunicorn', 'meu_projeto.wsgi:application', '--bind', '0.0.0.0:8000']">
+              <i class="bi bi-box-seam-fill me-2" style="color: #4cbb7a;"></i> <code>Dockerfile</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Container isolado para deploy</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="docker-compose.yml" data-codigo="version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - '8000:8000'
+    env_file: .env
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+
+volumes:
+  postgres_data:">
+              <i class="bi bi-diagram-3-fill me-2" style="color: #4cbb7a;"></i> <code>docker-compose.yml</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Orquestra containers (web, banco, cache)</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="management/commands/" data-codigo="# management/commands/limpar_dados.py
+from django.core.management.base import BaseCommand
+from meu_app.models import Cliente
+
+class Command(BaseCommand):
+    help = 'Limpa dados antigos do sistema'
+
+    def handle(self, *args, **options):
+        total = Cliente.objects.filter(criado_em__year=2020).delete()
+        self.stdout.write(f'Deletados {total[0]} clientes antigos')">
+              <i class="bi bi-terminal-fill me-2" style="color: #4cbb7a;"></i> <code>management/commands/</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Comandos personalizados para terminal</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <h4 class="text-white border-bottom border-secondary pb-2 mb-3" style="font-size: 1.1rem;">
+            <span class="badge bg-dark text-success border border-success me-2">Nível 6</span> Extra Avançado
+          </h4>
+          <div class="d-flex flex-column gap-2">
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="settings/base.py" data-codigo="import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = False
+ALLOWED_HOSTS = []
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'meu_app',
+]">
+              <i class="bi bi-gear-wide-connected me-2" style="color: #4cbb7a;"></i> <code>settings/base.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Configurações base para todos os ambientes</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="settings/local.py" data-codigo="from .base import *
+
+DEBUG = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}">
+              <i class="bi bi-laptop-fill me-2" style="color: #4cbb7a;"></i> <code>settings/local.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Configurações para desenvolvimento local</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="settings/production.py" data-codigo="from .base import *
+
+DEBUG = False
+ALLOWED_HOSTS = ['seusite.com', 'www.seusite.com']
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASSWORD'),
+        'HOST': os.environ.get('DB_HOST'),
+        'PORT': '5432',
+    }
+}">
+              <i class="bi bi-cloud-upload-fill me-2" style="color: #4cbb7a;"></i> <code>settings/production.py</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Configurações seguras para produção</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="media/" data-codigo="media/
+├── profiles/
+│   └── user_avatar.jpg
+├── uploads/
+│   └── documento.pdf
+└── temp/">
+              <i class="bi bi-images me-2" style="color: #4cbb7a;"></i> <code>media/</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Arquivos enviados pelos usuários</span>
+            </button>
+
+            <button class="btn p-2 text-start botao-codigo link-social w-100"
+              style="border: none; background: #111; border-radius: 8px;" data-bs-toggle="offcanvas"
+              data-bs-target="#codeViewer" data-arquivo="static/" data-codigo="static/
+├── css/
+│   └── style.css
+├── js/
+│   └── script.js
+└── img/
+    └── logo.png">
+              <i class="bi bi-filetype-css me-2" style="color: #4cbb7a;"></i> <code>static/</code>
+              <span class="d-block text-secondary small ms-4 mt-1">Arquivos estáticos (CSS, JS, imagens)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="codeViewer" aria-labelledby="codeViewerLabel"
+    style="background-color: #0d0d0d !important; border-left: 1px solid #2a2a2a; width: 500px;">
+    <div class="offcanvas-header" style="border-bottom: 1px solid #2a2a2a;">
+      <h5 class="offcanvas-title text-white" id="codeViewerLabel">
+        <i class="bi bi-file-earmark-arrow-up me-2" style="color: #4cbb7a"></i>
+        <span id="nome-arquivo-titulo">visualizador.py</span>
+      </h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Fechar"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column" style="background-color: #050505;">
+      <button id="botao-copiar" class="btn btn-sm mb-3 align-self-start fw-semibold d-flex align-items-center gap-2"
+        style="background-color: #1a1a1a; border: 1px solid #3a3a3a; color: #ccc; transition: 0.2s;">
+        <i class="bi bi-clipboard"></i> Copiar Código
+      </button>
+      <pre class="m-0 p-3 flex-grow-1"
+        style="background-color: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 12px; overflow: auto;"><code id="conteudo-codigo" style="font-family: 'Courier New', monospace; font-size: 0.85rem; color: #ced4da; white-space: pre-wrap;"></code></pre>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const botoesCodigo = document.querySelectorAll('.botao-codigo');
+      const tituloArquivo = document.getElementById('nome-arquivo-titulo');
+      const conteudoCodigo = document.getElementById('conteudo-codigo');
+      const botaoCopiar = document.getElementById('botao-copiar');
+
+      botoesCodigo.forEach(botao => {
+        botao.addEventListener('click', function () {
+          const arquivo = this.getAttribute('data-arquivo');
+          const codigo = this.getAttribute('data-codigo');
+
+          tituloArquivo.innerText = arquivo;
+          conteudoCodigo.innerText = codigo;
+        });
+      });
+
+      botaoCopiar.addEventListener('click', function () {
+        const texto = conteudoCodigo.innerText;
+        navigator.clipboard.writeText(texto).then(() => {
+          botaoCopiar.innerHTML = '<i class="bi bi-check2"></i> Copiado!';
+          botaoCopiar.style.borderColor = '#4cbb7a';
+          botaoCopiar.style.color = '#4cbb7a';
+
+          setTimeout(() => {
+            botaoCopiar.innerHTML = '<i class="bi bi-clipboard"></i> Copiar Código';
+            botaoCopiar.style.borderColor = '#3a3a3a';
+            botaoCopiar.style.color = '#ccc';
+          }, 2000);
+        });
+      });
+    });
+  </script>
+
+  <div style="text-align: center; margin: 1.5rem 0;">
+    <div style="text-align: center; margin: 1.5rem 0;">
+      <h2
+        style="color: #e8e8e8; border-left: 6px solid #4cbb7a; padding-left: 1rem; font-weight: 600; margin-bottom: 1.2rem; display: inline-block; text-align: left;">
+        <i class="bi bi-cloud-arrow-down me-2" style="color: #4cbb7a;"></i>
+        Baixar apresentação:
+      </h2>
+      <br>
+      <a href="file/apresentacao.pdf" download class="btn-download-red">Download</a>
+    </div>
+  </div>
+
+  <footer class="text-center py-3">
+    <p class="m-0 small">
+      <i class="bi bi-code-square me-1" style="color: #4cbb7a"></i>
+      Atualizado em 19/07/2026
+    </p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    (function() {
+      const progressBar = document.getElementById('progressBarFill');
+      const progressText = document.getElementById('progressText');
+      const overlay = document.getElementById('parabensOverlay');
+      const confettiContainer = document.getElementById('confettiContainer');
+
+      const secoesComBotao = ['passos_iniciais', 'Parte1', 'hello_world', 'Parte2', 'parte3'];
+      const totalSecoes = secoesComBotao.length;
+      let lidos = JSON.parse(localStorage.getItem('secoesLidas')) || [];
+
+      function atualizarProgresso() {
+        const progresso = Math.min((lidos.length / totalSecoes) * 100, 100);
+        const percentual = Math.round(progresso);
+        progressBar.style.width = percentual + '%';
+        progressText.textContent = percentual + '%';
+        if (percentual === 100 && totalSecoes > 0) mostrarParabens();
+      }
+
+      function marcarLido(botao) {
+        const secaoId = botao.getAttribute('data-secao');
+        if (!lidos.includes(secaoId)) {
+          lidos.push(secaoId);
+          localStorage.setItem('secoesLidas', JSON.stringify(lidos));
+          botao.classList.add('lido');
+          botao.innerHTML = '<i class="bi bi-check-circle-fill"></i> Lido ✓';
+          atualizarProgresso();
+        }
+      }
+
+      function verificarEstadoInicial() {
+        document.querySelectorAll('.btn-lido').forEach(botao => {
+          const secaoId = botao.getAttribute('data-secao');
+          if (lidos.includes(secaoId)) {
+            botao.classList.add('lido');
+            botao.innerHTML = '<i class="bi bi-check-circle-fill"></i> Lido ✓';
+          }
+        });
+        atualizarProgresso();
+      }
+
+      function mostrarParabens() {
+        overlay.classList.add('active');
+        gerarConfetes();
+      }
+
+      window.fecharParabens = function() {
+        overlay.classList.remove('active');
+        confettiContainer.innerHTML = '';
+      };
+
+      function gerarConfetes() {
+        const cores = ['#4cbb7a', '#ff6b6b', '#ffd93d', '#6bcbff', '#ff6fb7', '#a66cff', '#ff9f43'];
+        confettiContainer.innerHTML = '';
+        for (let i = 0; i < 150; i++) {
+          const confetti = document.createElement('div');
+          confetti.className = 'confetti';
+          confetti.style.left = Math.random() * 100 + '%';
+          confetti.style.background = cores[Math.floor(Math.random() * cores.length)];
+          confetti.style.width = (Math.random() * 8 + 4) + 'px';
+          confetti.style.height = (Math.random() * 8 + 4) + 'px';
+          confetti.style.animationDuration = (Math.random() * 2 + 1.5) + 's';
+          confetti.style.animationDelay = (Math.random() * 2) + 's';
+          confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+          confettiContainer.appendChild(confetti);
+        }
+        setTimeout(() => { confettiContainer.innerHTML = ''; }, 6000);
+      }
+
+      function adicionarBotoesLido() {
+        secoesComBotao.forEach(id => {
+          const secao = document.getElementById(id);
+          if (!secao || secao.querySelector('.btn-lido')) return;
+          const wrapper = document.createElement('div');
+          wrapper.className = 'btn-lido-wrapper';
+          const botao = document.createElement('button');
+          botao.className = 'btn-lido';
+          botao.setAttribute('data-secao', id);
+          botao.innerHTML = '<i class="bi bi-check-circle"></i> Marcar como lido';
+          botao.onclick = function(e) { e.stopPropagation(); marcarLido(this); };
+          wrapper.appendChild(botao);
+          secao.appendChild(wrapper);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          adicionarBotoesLido();
+          verificarEstadoInicial();
+        });
+      } else {
+        adicionarBotoesLido();
+        verificarEstadoInicial();
+      }
+    })();
+  </script>
+</body>
+</html>
